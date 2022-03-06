@@ -1,5 +1,6 @@
 import { Message } from 'discord.js';
 import { Command } from './commands/command';
+import { GoodMorningCommand } from './commands/goodmorning';
 import { GreetCommand } from './commands/greet';
 import { HelpCommand } from './commands/help';
 import { CommandContext } from './models/command_context';
@@ -15,6 +16,7 @@ export class CommandHandler {
     const commandClasses = [
       // TODO: Add more commands here.
       GreetCommand,
+      GoodMorningCommand,
     ];
 
     this.commands = commandClasses.map((CommandClass) => new CommandClass());
@@ -44,14 +46,9 @@ export class CommandHandler {
       await message.reply("you aren't allowed to use that command. Try !help.");
       await reactor.failure(message);
     } else {
-      await matchedCommand
-        .run(commandContext)
-        .then(() => {
-          reactor.success(message);
-        })
-        .catch((reason) => {
-          reactor.failure(message);
-        });
+      await matchedCommand.run(commandContext).catch(() => {
+        reactor.failure(message);
+      });
     }
   }
 

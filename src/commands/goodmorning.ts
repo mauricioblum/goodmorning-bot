@@ -1,0 +1,27 @@
+import { TextChannel } from 'discord.js';
+import { CommandContext } from '../models/command_context';
+import { getGoodMorning } from '../services/getGoodMorning';
+import { Command } from './command';
+
+export class GoodMorningCommand implements Command {
+  commandNames = ['goodmorning', 'bonjour'];
+
+  getHelpMessage(commandPrefix: string): string {
+    return `Use ${commandPrefix}goodmorning to get a good morning.`;
+  }
+
+  async run(parsedUserCommand: CommandContext): Promise<void> {
+    const goodMorning = await getGoodMorning();
+    if (goodMorning) {
+      const { guild } = parsedUserCommand.originalMessage;
+      const textChannel = guild?.channels.cache.find(
+        (channel) => channel.type === 'text',
+      ) as TextChannel;
+      await textChannel?.send(`${goodMorning.flag} - ${goodMorning.phrase}`);
+    }
+  }
+
+  hasPermissionToRun(parsedUserCommand: CommandContext): boolean {
+    return true;
+  }
+}

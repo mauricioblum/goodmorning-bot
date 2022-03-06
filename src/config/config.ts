@@ -15,8 +15,8 @@ export type BotConfig = {
 };
 
 export const config: BotConfig = {
-  token: '', // TODO: Put your token here!
-  prefix: '!', // Command prefix. ex: !help
+  token: process.env.DISCORD_BOT_TOKEN || '', // TODO: Put your token here!
+  prefix: '/', // Command prefix. ex: !help
   botOwnerRoleName: 'bot-owner',
   enableReactions: true,
 };

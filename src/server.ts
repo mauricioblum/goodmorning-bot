@@ -1,4 +1,5 @@
 import Discord, { Message } from 'discord.js';
+import 'dotenv/config';
 import { CommandHandler } from './command_handler';
 import { BotConfig, config } from './config/config';
 
