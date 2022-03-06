@@ -1,0 +1,1 @@
+worker: node dist/src/server.js
