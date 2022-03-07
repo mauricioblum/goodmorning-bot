@@ -14,10 +14,16 @@ export class GoodMorningCommand implements Command {
     const goodMorning = await getGoodMorning();
     if (goodMorning) {
       const { guild } = parsedUserCommand.originalMessage;
-      const textChannel = guild?.channels.cache.find(
-        (channel) => channel.type === 'text',
-      ) as TextChannel;
-      await textChannel?.send(`${goodMorning.flag} - ${goodMorning.phrase}`);
+      const messageChannel = parsedUserCommand.originalMessage
+        .channel as TextChannel;
+      const channels = guild?.channels.cache;
+      if (channels) {
+        const textChannel = channels.find(
+          (channel) =>
+            channel.type === 'text' && channel.name === messageChannel.name,
+        ) as TextChannel;
+        await textChannel?.send(`${goodMorning.flag} - ${goodMorning.phrase}`);
+      }
     }
   }
 
