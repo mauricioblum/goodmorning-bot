@@ -1,6 +1,6 @@
 {
   "name": "discord-typescript-bot",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A starting point for a TypeScript Discord bot",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   "author": "Jonn Spencer",
   "license": "MIT",
   "scripts": {
-    "start": "npm run build && node dist/src/server.js",
+    "start": "node ./dist/src/server.js",
     "build": "npm run build-ts",
     "test": "jest --forceExit --coverage --verbose",
     "lint": "eslint \"**/*.ts\"",
