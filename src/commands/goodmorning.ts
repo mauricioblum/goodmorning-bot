@@ -4,7 +4,7 @@ import { getGoodMorning } from '../services/getGoodMorning';
 import { Command } from './command';
 
 export class GoodMorningCommand implements Command {
-  commandNames = ['goodmorning', 'bonjour'];
+  commandNames = ['goodmorning', 'bonjour', 'moien'];
 
   getHelpMessage(commandPrefix: string): string {
     return `Use ${commandPrefix}goodmorning to get a good morning.`;
