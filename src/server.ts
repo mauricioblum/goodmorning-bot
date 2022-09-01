@@ -4,8 +4,6 @@ import { CommandHandler } from './command_handler';
 import { BotConfig, config } from './config/config';
 import { keepAlive } from './keepAlive';
 
-keepAlive();
-
 /** Pre-startup validation of the bot config. */
 function validateConfig(botConf: BotConfig) {
   if (!botConf.token) {
@@ -32,3 +30,5 @@ client.on('error', (e) => {
 });
 
 client.login(config.token);
+
+keepAlive();
