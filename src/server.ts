@@ -2,6 +2,9 @@ import Discord, { Message } from 'discord.js';
 import 'dotenv/config';
 import { CommandHandler } from './command_handler';
 import { BotConfig, config } from './config/config';
+import { keepAlive } from './keepAlive';
+
+keepAlive();
 
 /** Pre-startup validation of the bot config. */
 function validateConfig(botConf: BotConfig) {
