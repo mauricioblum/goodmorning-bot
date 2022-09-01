@@ -46,7 +46,9 @@ export class CommandHandler {
       await message.reply("you aren't allowed to use that command. Try !help.");
       await reactor.failure(message);
     } else {
-      await matchedCommand.run(commandContext).catch(() => {
+      console.log('Message ok!');
+      await matchedCommand.run(commandContext).catch((err) => {
+        console.log('🚀 ~ CommandHandler ~ handleMessage ~ err', err);
         reactor.failure(message);
       });
     }

@@ -24,6 +24,7 @@ try {
   });
 
   client.on('message', (message: Message) => {
+    console.log('🚀 ~ client.on ~ message', message);
     commandHandler.handleMessage(message);
   });
 
