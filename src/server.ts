@@ -11,24 +11,27 @@ function validateConfig(botConf: BotConfig) {
   }
 }
 
-validateConfig(config);
+try {
+  validateConfig(config);
 
-const commandHandler = new CommandHandler(config.prefix);
+  const commandHandler = new CommandHandler(config.prefix);
 
-const client = new Discord.Client();
+  const client = new Discord.Client();
 
-client.on('ready', () => {
-  console.log('Bot has started');
-});
+  client.on('ready', () => {
+    console.log('Bot has started');
+    keepAlive();
+  });
 
-client.on('message', (message: Message) => {
-  commandHandler.handleMessage(message);
-});
+  client.on('message', (message: Message) => {
+    commandHandler.handleMessage(message);
+  });
 
-client.on('error', (e) => {
-  console.error('Discord client error!', e);
-});
+  client.on('error', (e) => {
+    console.error('Discord client error!', e);
+  });
 
-client.login(config.token);
-
-keepAlive();
+  client.login(config.token);
+} catch (err) {
+  console.error(err);
+}
