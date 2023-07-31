@@ -3,6 +3,16 @@ import { CommandContext } from '../models/command_context';
 import { getGoodMorning } from '../services/getGoodMorning';
 import { Command } from './command';
 
+function parseFlag(flag: string) {
+  if (!flag) {
+    return '';
+  }
+  if (flag.includes('custom')) {
+    return '🏳️';
+  }
+  return flag;
+}
+
 export class GoodMorningCommand implements Command {
   commandNames = ['goodmorning', 'bonjour', 'moien'];
 
@@ -22,7 +32,9 @@ export class GoodMorningCommand implements Command {
           (channel) =>
             channel.type === 'text' && channel.name === messageChannel.name,
         ) as TextChannel;
-        await textChannel?.send(`${goodMorning.flag} - ${goodMorning.phrase}`);
+        await textChannel?.send(
+          `${parseFlag(goodMorning.flag)} - ${goodMorning.phrase}`,
+        );
       }
     }
   }
